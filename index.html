@@ -60,29 +60,6 @@
             opacity: 1;
             background: rgba(255,255,255,0.2);
         }
-        .music-player {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            width: 40px;
-            height: 40px;
-            background: rgba(255,255,255,0.1);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: all 0.3s;
-            backdrop-filter: blur(5px);
-        }
-        .music-player:hover {
-            background: rgba(255,255,255,0.2);
-            transform: scale(1.1);
-        }
-        .music-player i {
-            color: white;
-            font-size: 20px;
-        }
         .heart {
             position: fixed;
             width: 20px;
@@ -133,15 +110,7 @@
 </head>
 <body>
     <!-- 轻量粒子（减少至30个） -->
-    <div id="particles">
-        {Array(30).fill('').map(() => 
-            `<div class="particle" style="left:${Math.random()*100}vw;top:${Math.random()*100}vh;animation-delay:${Math.random()*2}s"></div>`
-        ).join('')}
-    </div>
-
-    <div class="music-player" id="musicPlayer">
-        <i class="fas fa-music"></i>
-    </div>
+    <div id="particles"></div>
 
     <div class="typing-container">
         <div class="typing" id="typingText"></div>
@@ -164,9 +133,18 @@
 
         let index = 0;
         const typingText = document.getElementById('typingText');
-        const musicPlayer = document.getElementById('musicPlayer');
         const bgMusic = document.getElementById('bgMusic');
-        let isMusicPlaying = false;
+
+        // 创建粒子效果
+        const particlesContainer = document.getElementById('particles');
+        for (let i = 0; i < 30; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            particle.style.left = Math.random() * 100 + 'vw';
+            particle.style.top = Math.random() * 100 + 'vh';
+            particle.style.animationDelay = Math.random() * 2 + 's';
+            particlesContainer.appendChild(particle);
+        }
 
         function createHeart() {
             const heart = document.createElement('div');
@@ -193,15 +171,26 @@
             }
         }
 
-        musicPlayer.addEventListener('click', () => {
-            if (isMusicPlaying) {
-                bgMusic.pause();
-                musicPlayer.innerHTML = '<i class="fas fa-music"></i>';
-            } else {
-                bgMusic.play();
-                musicPlayer.innerHTML = '<i class="fas fa-pause"></i>';
+        // 处理音乐自动播放
+        function playMusic() {
+            bgMusic.volume = 0.5;
+            const playPromise = bgMusic.play();
+            
+            if (playPromise !== undefined) {
+                playPromise.catch(error => {
+                    console.log('自动播放失败，等待用户交互');
+                });
             }
-            isMusicPlaying = !isMusicPlaying;
+        }
+
+        // 页面加载时尝试播放
+        window.addEventListener('load', playMusic);
+        
+        // 添加多种交互事件来触发播放
+        ['click', 'touchstart', 'keydown'].forEach(eventType => {
+            document.addEventListener(eventType, () => {
+                playMusic();
+            }, { once: true });
         });
 
         // 保留彩蛋交互
