@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>致特别的你</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        }
+        body {
+            background: linear-gradient(135deg, #001a33 20%, #42a5f5 80%);
+            min-height: 100vh;
+            overflow-y: auto; /* 开启纵向滚动 */
+            overscroll-behavior-y: contain; /* 优化滚动体验 */
+        }
+        .typing-container {
+            padding: 24px 16px;
+            width: 90vw;
+            max-width: 500px;
+            margin: 0 auto;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeUp 0.8s ease-out forwards;
+            min-height: 100vh; /* 撑开容器触发滚动 */
+        }
+        .typing {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #fff;
+            position: relative;
+            overflow: visible;
+            text-shadow: 0 0 10px rgba(255,255,255,0.3);
+        }
+        .typing::after {
+            content: '|';
+            margin-left: 4px;
+            opacity: 1;
+            animation: cursorBlink 0.7s step-end infinite;
+        }
+        .memory {
+            position: fixed; /* 固定底部彩蛋 */
+            bottom: 24px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.9rem;
+            color: #e0e0e0;
+            opacity: 0.8;
+            transition: opacity 0.3s;
+            cursor: pointer;
+            padding: 8px 16px;
+            border-radius: 20px;
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(5px);
+        }
+        .memory:hover {
+            opacity: 1;
+            background: rgba(255,255,255,0.2);
+        }
+        .music-player {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            backdrop-filter: blur(5px);
+        }
+        .music-player:hover {
+            background: rgba(255,255,255,0.2);
+            transform: scale(1.1);
+        }
+        .music-player i {
+            color: white;
+            font-size: 20px;
+        }
+        .heart {
+            position: fixed;
+            width: 20px;
+            height: 20px;
+            background: #ff6b6b;
+            transform: rotate(45deg);
+            animation: heartFloat 4s ease-in-out infinite;
+            opacity: 0;
+        }
+        .heart:before,
+        .heart:after {
+            content: '';
+            width: 20px;
+            height: 20px;
+            background: #ff6b6b;
+            border-radius: 50%;
+            position: absolute;
+        }
+        .heart:before {
+            left: -10px;
+        }
+        .heart:after {
+            top: -10px;
+        }
+        @keyframes heartFloat {
+            0% { transform: rotate(45deg) translateY(0) scale(1); opacity: 0; }
+            50% { opacity: 0.8; }
+            100% { transform: rotate(45deg) translateY(-100vh) scale(0.5); opacity: 0; }
+        }
+        /* 保留原有动画 */
+        @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
+        @keyframes cursorBlink { 50% { opacity: 0; } }
+        /* 优化粒子性能 */
+        .particle {
+            width: 1px;
+            height: 1px;
+            background: rgba(255,255,255,0.3);
+            animation: particleFade 3s linear infinite;
+            position: fixed;
+            pointer-events: none; /* 不影响滚动 */
+        }
+        @keyframes particleFade {
+            0% { opacity: 0.3; transform: translateY(0); }
+            100% { opacity: 0; transform: translateY(100vh); }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- 轻量粒子（减少至30个） -->
+    <div id="particles">
+        {Array(30).fill('').map(() => 
+            `<div class="particle" style="left:${Math.random()*100}vw;top:${Math.random()*100}vh;animation-delay:${Math.random()*2}s"></div>`
+        ).join('')}
+    </div>
+
+    <div class="music-player" id="musicPlayer">
+        <i class="fas fa-music"></i>
+    </div>
+
+    <div class="typing-container">
+        <div class="typing" id="typingText"></div>
+        <div style="height: 60px;"></div> <!-- 底部留白避免遮挡彩蛋 -->
+    </div>
+
+    <div class="memory" id="dateEasterEgg">2022年9月1日 晴 | 借椅子的午后回忆</div>
+
+    <audio id="bgMusic" loop>
+        <source src="music.mp3" type="audio/mpeg">
+    </audio>
+
+    <script>
+        const text = `你好！帕提玛同学\n\n
+        我是你的高中同学，也是曾与你短暂同桌的旧友。今天鼓起勇气写下这封信，或许会占用你三分钟时间，但这是我思考许久的决定。\n\n
+        记得高二分班那天，我因迟到去隔壁班借椅子时，第一次见到在 28 班独自填写体温表的你。当我们目光交汇的瞬间，某种难以言喻的悸动突然击中我 —— 那是我从未体验过的奇妙感觉。但那时的我选择将这份心情悄悄藏起，就像面对月光般美好却遥不可及的存在，只能默默欣赏。\n\n
+        如今三年时光匆匆而过，你始终是我记忆中最特别的女孩。不同于流于表面的欣赏，我更敬佩你身上那些珍贵的品质：正直善良的品格、干净纯粹的圈子、独立清醒的三观，这些特质让你在人群中闪耀着独特的光芒。若要问我心中最完美的女孩是什么模样，答案始终是你。\n\n
+        我知道此刻的冒昧或许显得唐突，但正如那句 "向往不如行动"，我想为这份坚持了三年的心意画上句号。无论你选择接受或拒绝，我都尊重你的决定。若这封信让你感到困扰，我真诚地向你道歉。\n\n
+        最后，想对你说：谢谢你曾出现在我的青春里，让我相信世间真的存在如月光般皎洁美好的灵魂。无论未来如何，祝你永远被温柔以待。`;
+
+        let index = 0;
+        const typingText = document.getElementById('typingText');
+        const musicPlayer = document.getElementById('musicPlayer');
+        const bgMusic = document.getElementById('bgMusic');
+        let isMusicPlaying = false;
+
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.className = 'heart';
+            heart.style.left = Math.random() * 100 + 'vw';
+            document.body.appendChild(heart);
+            setTimeout(() => heart.remove(), 4000);
+        }
+
+        function type() {
+            if(index < text.length) {
+                typingText.textContent += text.charAt(index);
+                index++;
+                // 优化停顿逻辑（手机端更敏感）
+                if(['\n', '。', '！'].includes(text.charAt(index))) {
+                    setTimeout(type, 120);
+                } else {
+                    setTimeout(type, 30 + Math.random()*10);
+                }
+            } else {
+                // 打字完成后允许自由滚动
+                document.querySelector('.typing-container').style.minHeight = 'auto';
+                setInterval(createHeart, 2000);
+            }
+        }
+
+        musicPlayer.addEventListener('click', () => {
+            if (isMusicPlaying) {
+                bgMusic.pause();
+                musicPlayer.innerHTML = '<i class="fas fa-music"></i>';
+            } else {
+                bgMusic.play();
+                musicPlayer.innerHTML = '<i class="fas fa-pause"></i>';
+            }
+            isMusicPlaying = !isMusicPlaying;
+        });
+
+        // 保留彩蛋交互
+        document.getElementById('dateEasterEgg').addEventListener('click', () => {
+            alert('那天你穿了淡蓝色衬衫，体温表最后一格写着："一切安好"');
+        });
+
+        type();
+    </script>
+</body>
+</html>
