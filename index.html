@@ -33,16 +33,21 @@
                 linear-gradient(-45deg, transparent 75%, #f4deb3 75%);
             background-size: 20px 20px;
             border-radius: 10px;
-            box-shadow: 0 0 20px rgba(0,0,0,0.2);
+            box-shadow: 0 0 20px rgba(0,0,0,0.2),
+                        0 0 30px rgba(255,182,193,0.3),
+                        inset 0 0 15px rgba(255,255,255,0.5);
             z-index: 1000;
             opacity: 0;
             animation: envelopeAppear 1.5s ease-out forwards;
             cursor: pointer;
-            transition: transform 0.3s, opacity 1s ease;
+            transition: transform 0.3s, opacity 1s ease, box-shadow 0.3s;
             overflow: hidden;
         }
         .envelope:hover {
             transform: translate(-50%, -50%) scale(0.85);
+            box-shadow: 0 0 25px rgba(0,0,0,0.3),
+                        0 0 40px rgba(255,182,193,0.4),
+                        inset 0 0 20px rgba(255,255,255,0.6);
         }
         .envelope-flap {
             position: absolute;
@@ -140,6 +145,9 @@
             color: #ff6b6b;
             font-size: 20px;
             z-index: 9999;
+            text-shadow: 0 0 10px rgba(255,107,107,0.8),
+                         0 0 20px rgba(255,107,107,0.4);
+            filter: drop-shadow(0 0 5px rgba(255,107,107,0.6));
         }
         @keyframes clickHeart {
             0% {
@@ -211,11 +219,59 @@
             overflow: visible;
             text-shadow: 0 0 10px rgba(255,255,255,0.3);
         }
+        .typing span {
+            display: inline-block;
+            opacity: 0;
+            transform: translateY(10px);
+            animation: charAppear 0.3s ease-out forwards;
+            text-shadow: 0 0 8px rgba(255,255,255,0.4);
+            position: relative;
+        }
+        .typing span::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            left: 0;
+            top: 0;
+            filter: blur(4px);
+            animation: sparkle 2s ease-in-out infinite;
+            opacity: 0;
+        }
+        .typing span.space {
+            display: inline;
+        }
+        .typing span.punctuation {
+            animation-duration: 0.4s;
+        }
         .typing::after {
             content: '|';
             margin-left: 4px;
             opacity: 1;
             animation: cursorBlink 0.7s step-end infinite;
+        }
+        @keyframes charAppear {
+            0% {
+                opacity: 0;
+                transform: translateY(10px) scale(0.8);
+                text-shadow: 0 0 5px rgba(255,255,255,0);
+            }
+            50% {
+                opacity: 0.5;
+                transform: translateY(5px) scale(1.1);
+                text-shadow: 0 0 20px rgba(255,255,255,0.8),
+                             0 0 30px rgba(255,182,193,0.6);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+                text-shadow: 0 0 10px rgba(255,255,255,0.4),
+                             0 0 15px rgba(255,182,193,0.3);
+            }
+        }
+        @keyframes sparkle {
+            0%, 100% { opacity: 0; }
+            50% { opacity: 0.5; }
         }
         .memory {
             position: fixed;
@@ -233,11 +289,13 @@
             backdrop-filter: blur(5px);
             z-index: 1;
             display: none;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1),
+                        0 0 20px rgba(255,182,193,0.2);
             border: 1px solid rgba(255,255,255,0.2);
             animation: memoryAppear 1s ease forwards,
                        memoryPulse 2s ease-in-out infinite,
                        memoryGlow 3s ease-in-out infinite;
+            text-shadow: 0 0 10px rgba(255,255,255,0.3);
         }
         .memory:hover {
             opacity: 1;
@@ -574,13 +632,36 @@
 
         function type() {
             if(index < text.length) {
-                typingText.textContent += text.charAt(index);
-                index++;
-                if(['\n', '。', '！'].includes(text.charAt(index))) {
-                    setTimeout(type, 120);
+                const char = text.charAt(index);
+                const span = document.createElement('span');
+                
+                // 处理不同类型的字符
+                if (char === ' ') {
+                    span.className = 'space';
+                    span.innerHTML = '&nbsp;';
+                } else if (['\n'].includes(char)) {
+                    span.innerHTML = '<br>';
+                } else if (['，', '。', '！', '：', '"', '"'].includes(char)) {
+                    span.className = 'punctuation';
+                    span.textContent = char;
                 } else {
-                    setTimeout(type, 30 + Math.random()*10);
+                    span.textContent = char;
                 }
+                
+                typingText.appendChild(span);
+                index++;
+
+                // 根据字符类型设置不同的延迟
+                let delay = 30;
+                if (['\n'].includes(char)) {
+                    delay = 150;
+                } else if (['。', '！'].includes(char)) {
+                    delay = 300;
+                } else if (['，', '：'].includes(char)) {
+                    delay = 150;
+                }
+
+                setTimeout(type, delay + Math.random() * 10);
             } else {
                 // 打字完成后继续保持树叶效果一段时间，然后逐渐停止
                 setTimeout(() => {
@@ -589,7 +670,6 @@
                 document.querySelector('.typing-container').style.minHeight = 'auto';
                 const easterEgg = document.getElementById('dateEasterEgg');
                 easterEgg.style.display = 'block';
-                // 添加淡入动画
                 setTimeout(() => {
                     easterEgg.style.opacity = '0.9';
                 }, 100);
