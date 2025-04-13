@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>旅游资源 - 麦盖提县</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&family=HarmonyOS+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .tourism-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .tourism-section {
+            margin-bottom: 3rem;
+            margin-top: 4rem;
+        }
+
+        .tourism-section h2 {
+            font-family: 'Noto Serif SC', serif;
+            color: var(--desert-gold);
+            margin-bottom: 1.5rem;
+            font-size: 2rem;
+        }
+
+        .tourism-section p {
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            color: #333;
+        }
+
+        .attractions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .attraction-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .attraction-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .attraction-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .attraction-card h3 {
+            padding: 1rem;
+            color: var(--desert-gold);
+            font-family: 'Noto Serif SC', serif;
+        }
+
+        .attraction-card p {
+            padding: 0 1rem 1rem;
+            color: #666;
+        }
+
+        .activity-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .activity-item {
+            background: white;
+            border-radius: 10px;
+            padding: 1rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .activity-item i {
+            color: var(--desert-gold);
+            margin-right: 0.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .tourism-content {
+                padding: 1rem;
+            }
+
+            .tourism-section h2 {
+                font-size: 1.5rem;
+            }
+
+            .attractions-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <nav class="nav">
+            <div class="logo">麦盖提县</div>
+            <button class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
+            <ul class="nav-links">
+                <li><a href="index.html">首页</a></li>
+                <li><a href="culture.html">刀郎文化</a></li>
+                <li><a href="geography.html">地理特色</a></li>
+                <li><a href="tourism.html">旅游资源</a></li>
+                <li><a href="heritage.html">非遗传承</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="tourism-content">
+        <section class="tourism-section">
+            <h2>特色景点</h2>
+            <p>麦盖提县拥有丰富的自然景观和人文景观，是体验新疆独特魅力的理想之地。</p>
+            <div class="attractions-grid">
+                <div class="attraction-card">
+                    <img src="shamo11.jpg" alt="塔克拉玛干沙漠">
+                    <h3>塔克拉玛干沙漠</h3>
+                    <p>世界第二大流动沙漠，壮观的沙丘景观和独特的沙漠生态。</p>
+                </div>
+                <div class="attraction-card">
+                    <img src="shamolvzhou.jpg" alt="绿洲风光">
+                    <h3>绿洲风光</h3>
+                    <p>叶尔羌河沿岸的绿洲景观，展现沙漠中的生命奇迹。</p>
+                </div>
+                <div class="attraction-card">
+                    <img src="cun.jpg" alt="刀郎文化村">
+                    <h3>刀郎文化村</h3>
+                    <p>体验原汁原味的刀郎文化，欣赏传统歌舞表演。</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="tourism-section">
+            <h2>特色活动</h2>
+            <div class="activity-list">
+                <div class="activity-item">
+                    <i class="fas fa-music"></i>
+                    <span>刀郎木卡姆表演</span>
+                </div>
+                <div class="activity-item">
+                    <i class="fas fa-camera"></i>
+                    <span>沙漠摄影</span>
+                </div>
+                <div class="activity-item">
+                    <i class="fas fa-utensils"></i>
+                    <span>特色美食体验</span>
+                </div>
+                <div class="activity-item">
+                    <i class="fas fa-hiking"></i>
+                    <span>沙漠徒步</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="tourism-section">
+            <h2>旅游服务</h2>
+            <p>麦盖提县提供完善的旅游服务设施，包括：</p>
+            <ul>
+                <li>星级酒店和特色民宿</li>
+                <li>特色餐饮服务</li>
+                <li>专业导游服务</li>
+                <li>旅游交通服务</li>
+                <li>旅游纪念品商店</li>
+            </ul>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 新疆交通职业学院-艾比布拉</p>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html> 

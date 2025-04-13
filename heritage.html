@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>非遗传承 - 麦盖提县</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&family=HarmonyOS+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .heritage-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .heritage-section {
+            margin-bottom: 3rem;
+            margin-top: 4rem;
+        }
+
+        .heritage-section h2 {
+            font-family: 'Noto Serif SC', serif;
+            color: var(--desert-gold);
+            margin-bottom: 1.5rem;
+            font-size: 2rem;
+        }
+
+        .heritage-section p {
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            color: #333;
+        }
+
+        .heritage-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .heritage-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .heritage-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .heritage-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .heritage-card h3 {
+            padding: 1rem;
+            color: var(--desert-gold);
+            font-family: 'Noto Serif SC', serif;
+        }
+
+        .heritage-card p {
+            padding: 0 1rem 1rem;
+            color: #666;
+        }
+
+        .master-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .master-card {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .master-card img {
+            width: 200px;
+            height: 200px;
+            border-radius: 5%;
+            object-fit: cover;
+            margin-bottom: 1rem;
+        }
+
+        .master-card h3 {
+            color: var(--desert-gold);
+            margin-bottom: 0.5rem;
+        }
+
+        .master-card p {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .heritage-content {
+                padding: 1rem;
+            }
+
+            .heritage-section h2 {
+                font-size: 1.5rem;
+            }
+
+            .heritage-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <nav class="nav">
+            <div class="logo">麦盖提县</div>
+            <button class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
+            <ul class="nav-links">
+                <li><a href="index.html">首页</a></li>
+                <li><a href="culture.html">刀郎文化</a></li>
+                <li><a href="geography.html">地理特色</a></li>
+                <li><a href="tourism.html">旅游资源</a></li>
+                <li><a href="heritage.html">非遗传承</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="heritage-content">
+        <section class="heritage-section">
+            <h2>非物质文化遗产</h2>
+            <p>麦盖提县拥有丰富的非物质文化遗产，这些珍贵的文化遗产承载着维吾尔族的历史记忆和文化智慧。</p>
+            <div class="heritage-grid">
+                <div class="heritage-card">
+                    <img src="rrr.jpg" alt="十二木卡姆">
+                    <h3>十二木卡姆</h3>
+                    <p>联合国教科文组织人类非物质文化遗产代表作，维吾尔族传统音乐的最高形式。</p>
+                </div>
+                <div class="heritage-card">
+                    <img src="daolangwu.jpg" alt="刀郎舞">
+                    <h3>刀郎舞</h3>
+                    <p>国家级非物质文化遗产，展现维吾尔族人民的生活智慧和艺术才华。</p>
+                </div>
+                <div class="heritage-card">
+                    <img src="shouyi.jpg" alt="传统手工艺">
+                    <h3>传统手工艺</h3>
+                    <p>包括地毯编织、乐器制作、刺绣等传统工艺，展现精湛的技艺。</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="heritage-section">
+            <h2>传承人风采</h2>
+            <div class="master-list">
+                <div class="master-card">
+                    <img src="维族大叔.png" alt="木卡姆传承人">
+                    <h3>阿布都热合曼</h3>
+                    <p>国家级非物质文化遗产十二木卡姆代表性传承人</p>
+                    <p>以上图片均来源于网络，AI合成</p>
+                </div>
+                <div class="master-card">
+                    <img src="沙漠中跳舞的姑娘2.png" alt="刀郎舞传承人">
+                    <h3>古丽娜尔</h3>
+                    <p>国家级非物质文化遗产刀郎舞代表性传承人</p>
+                    <p>以上图片均来源于网络，AI合成</p>
+                </div>
+                <div class="master-card">
+                    <img src="弹都塔尔.png" alt="手工艺传承人">
+                    <h3>买买提</h3>
+                    <p>自治区级非物质文化遗产传统手工艺代表性传承人</p>
+                    <p>以上图片均来源于网络，AI合成</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="heritage-section">
+            <h2>传承保护</h2>
+            <p>麦盖提县高度重视非物质文化遗产的保护和传承工作：</p>
+            <ul>
+                <li>建立非遗传承基地</li>
+                <li>开展非遗进校园活动</li>
+                <li>举办非遗展演和培训</li>
+                <li>支持传承人开展传习活动</li>
+                <li>推动非遗与旅游融合发展</li>
+            </ul>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 新疆交通职业学院-艾比布拉</p>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html> 

@@ -1,0 +1,533 @@
+:root {
+    --desert-gold: #D4AF37;
+    --oasis-green: #5D8C7B;
+    --sand-gradient: linear-gradient(135deg, #F5DEB3, #8B4513, #FF8C00);
+    --text-gold: #D4AF37;
+    --text-light: #F5F5DC;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'HarmonyOS Sans', sans-serif;
+    background-color: #F5F5DC;
+    color: #333;
+}
+
+.header {
+    background: var(--sand-gradient);
+    padding: 1rem;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+}
+
+.nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.logo {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 1.5rem;
+    color: var(--text-gold);
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+}
+
+.nav-links a {
+    color: var(--text-light);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+.nav-links a:hover {
+    color: var(--desert-gold);
+}
+
+.hero {
+    height: 100vh;
+    background-image: url('../header_bj.jpg');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0,0.5);
+}
+
+.hero-content {
+    position: relative;
+    z-index: 1;
+    color: rgb(159, 142, 30);
+}
+
+.hero-content h1 {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 4rem;
+    margin-bottom: 1rem;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+}
+
+.hero-content p {
+    font-size: 1.5rem;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.quick-access {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    padding: 4rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.card {
+    background: rgb(255, 255, 255);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    transition: transform 0.3s;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.card img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    object-position: center;
+}
+
+.card h3 {
+    font-family: 'Noto Serif SC', serif;
+    color: var(--desert-gold);
+    padding: 1rem;
+    margin: 0;
+}
+
+.card p {
+    padding: 0 1rem 1rem;
+    color: #666;
+    flex-grow: 1;
+}
+
+footer {
+    background: var(--sand-gradient);
+    color: white;
+    text-align: center;
+    padding: 2rem;
+    margin-top: 4rem;
+}
+
+.mobile-menu-btn {
+    display: none;
+    background: none;
+    border: none;
+    color: var(--text-light);
+    font-size: 1.2rem;
+    cursor: pointer;
+    padding: 0.5rem 1rem;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.mobile-menu-btn i {
+    transition: transform 0.3s ease;
+}
+
+.mobile-menu-btn.active i {
+    transform: rotate(90deg);
+}
+
+@media (max-width: 768px) {
+    .mobile-menu-btn {
+        display: block;
+        z-index: 1001;
+    }
+
+    .nav-links {
+        position: fixed;
+        top: 50px;
+        right: 20px;
+        background: rgba(255, 255, 255, 0.85);
+        backdrop-filter: blur(15px) saturate(180%);
+        -webkit-backdrop-filter: blur(15px) saturate(180%);
+        flex-direction: column;
+        padding: 1.5rem;
+        gap: 1rem;
+        transform: translateX(100%) scale(0.8);
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        z-index: 999;
+        border-radius: 20px;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        min-width: 180px;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .nav-links.active {
+        transform: translateX(0) scale(1);
+    }
+
+    .nav-links li {
+        width: 100%;
+        text-align: left;
+        opacity: 0;
+        transform: translateX(30px);
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .nav-links.active li {
+        opacity: 1;
+        transform: translateX(0);
+    }
+
+    .nav-links li:nth-child(1) { transition-delay: 0.1s; }
+    .nav-links li:nth-child(2) { transition-delay: 0.15s; }
+    .nav-links li:nth-child(3) { transition-delay: 0.2s; }
+    .nav-links li:nth-child(4) { transition-delay: 0.25s; }
+    .nav-links li:nth-child(5) { transition-delay: 0.3s; }
+
+    .nav-links a {
+        display: flex;
+        align-items: center;
+        padding: 0.8rem 1.2rem;
+        font-size: 1rem;
+        color: #333;
+        text-decoration: none;
+        border-radius: 12px;
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+        background: rgba(255, 255, 255, 0.1);
+    }
+
+    .nav-links a::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(135deg, 
+            rgba(212, 175, 55, 0.15), 
+            rgba(93, 140, 123, 0.15));
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        backdrop-filter: blur(5px);
+        -webkit-backdrop-filter: blur(5px);
+    }
+
+    .nav-links a:hover {
+        color: var(--desert-gold);
+        transform: translateX(5px);
+        background: rgba(255, 255, 255, 0.2);
+    }
+
+    .nav-links a:hover::before {
+        opacity: 1;
+    }
+
+    .nav-links a::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: linear-gradient(90deg, 
+            var(--desert-gold), 
+            var(--oasis-green));
+        transition: width 0.3s ease;
+    }
+
+    .nav-links a:hover::after {
+        width: 100%;
+    }
+
+    .hero {
+        height: 50vh;
+        margin-top: 50px;
+    }
+
+    .hero-content h1 {
+        font-size: 2rem;
+        padding: 0 1rem;
+        line-height: 1.2;
+    }
+
+    .hero-content p {
+        font-size: 1rem;
+        padding: 0 1rem;
+        line-height: 1.4;
+    }
+
+    .quick-access {
+        padding: 2rem 1rem;
+        gap: 1.5rem;
+        grid-template-columns: 1fr;
+    }
+
+    .card {
+        margin-bottom: 1.5rem;
+    }
+
+    .card img {
+        height: 200px;
+    }
+
+    .card h3 {
+        font-size: 1.2rem;
+        padding: 1rem;
+    }
+
+    .card p {
+        font-size: 0.9rem;
+        padding: 0 1rem 1rem;
+    }
+
+    footer {
+        padding: 1.5rem;
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 480px) {
+    html {
+        font-size: 12px;
+    }
+
+    .hero {
+        height: 40vh;
+    }
+
+    .hero-content h1 {
+        font-size: 1.8rem;
+    }
+
+    .hero-content p {
+        font-size: 0.9rem;
+    }
+
+    .quick-access {
+        padding: 1.5rem 1rem;
+        gap: 1rem;
+    }
+
+    .card {
+        transform: scale(0.9);
+        margin-bottom: 1rem;
+    }
+
+    .card img {
+        height: 180px;
+    }
+
+    .card h3 {
+        font-size: 1.1rem;
+        padding: 0.8rem;
+    }
+
+    .card p {
+        font-size: 0.8rem;
+        padding: 0 0.8rem 0.8rem;
+    }
+
+    .nav-links {
+        min-width: 160px;
+        padding: 1rem;
+    }
+
+    .nav-links a {
+        padding: 0.7rem 1rem;
+        font-size: 0.9rem;
+    }
+}
+
+/* 添加触摸设备优化 */
+@media (hover: none) {
+    .card:hover {
+        transform: none;
+    }
+    
+    .nav-links a:hover {
+        color: var(--text-light);
+    }
+}
+
+.instruments-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.instrument-card {
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    transition: transform 0.3s;
+}
+
+.instrument-card:hover {
+    transform: translateY(-5px);
+}
+
+.instrument-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.instrument-card h3 {
+    font-family: 'Noto Serif SC', serif;
+    color: var(--desert-gold);
+    padding: 1rem;
+    margin: 0;
+}
+
+.instrument-card p {
+    padding: 0 1rem 1rem;
+    color: #666;
+}
+
+@media (max-width: 768px) {
+    .instruments-grid {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 1.5rem;
+        padding: 1.5rem;
+    }
+
+    .instrument-card img {
+        height: 180px;
+    }
+}
+
+@media (max-width: 480px) {
+    .instruments-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+        padding: 1rem;
+    }
+
+    .instrument-card img {
+        height: 150px;
+    }
+}
+
+/* 删除main标签的样式 */
+main {
+    /* 删除这些样式 */
+}
+
+.master-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.master-card {
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    transition: transform 0.3s;
+    padding: 1.5rem;
+    text-align: center;
+}
+
+.master-card:hover {
+    transform: translateY(-5px);
+}
+
+.master-card img {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin: 0 auto 1rem;
+    display: block;
+}
+
+.master-card h3 {
+    font-family: 'Noto Serif SC', serif;
+    color: var(--desert-gold);
+    margin-bottom: 0.5rem;
+    font-size: 1.5rem;
+}
+
+.master-card p {
+    color: #666;
+    margin-bottom: 0.5rem;
+    line-height: 1.6;
+}
+
+.master-card p:last-child {
+    font-size: 0.9rem;
+    color: #999;
+    margin-top: 1rem;
+}
+
+@media (max-width: 768px) {
+    .master-list {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 1.5rem;
+        padding: 1.5rem;
+    }
+
+    .master-card img {
+        width: 180px;
+        height: 180px;
+    }
+}
+
+@media (max-width: 480px) {
+    .master-list {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+        padding: 1rem;
+    }
+
+    .master-card img {
+        width: 160px;
+        height: 160px;
+    }
+} 

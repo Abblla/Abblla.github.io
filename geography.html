@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>地理特色 - 麦盖提县</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&family=HarmonyOS+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .geography-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .geography-section {
+            margin-bottom: 3rem;
+            margin-top: 4rem;
+        }
+
+        .geography-section h2 {
+            font-family: 'Noto Serif SC', serif;
+            color: var(--desert-gold);
+            margin-bottom: 1.5rem;
+            font-size: 2rem;
+        }
+
+        .geography-section p {
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            color: #333;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .feature-card {
+            background: white;
+            border-radius: 15px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .feature-card h3 {
+            color: var(--desert-gold);
+            margin-bottom: 1rem;
+            font-family: 'Noto Serif SC', serif;
+        }
+
+        .feature-card i {
+            font-size: 2rem;
+            color: var(--desert-gold);
+            margin-bottom: 1rem;
+        }
+
+        .map-container {
+            width: 100%;
+            height: 400px;
+            margin: 2rem 0;
+            border-radius: 15px;
+            overflow: hidden;
+        }
+
+        @media (max-width: 768px) {
+            .geography-content {
+                padding: 1rem;
+            }
+
+            .geography-section h2 {
+                font-size: 1.5rem;
+            }
+
+            .feature-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+    <style>
+        /* 在原有样式下方添加轮播图样式 */
+        .carousel-container {
+            position: relative;
+            max-width: 1200px;
+            margin: 2rem auto;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+        }
+
+        .carousel-slide {
+            position: relative;
+            height: 500px;
+        }
+
+        .carousel-slide img {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0;
+            transition: opacity 0.8s ease;
+        }
+
+        .carousel-slide img.active {
+            opacity: 1;
+        }
+
+        .carousel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255,255,255,0.8);
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .carousel-btn:hover {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+
+        .prev { left: 20px; }
+        .next { right: 20px; }
+
+        .carousel-dots {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+        }
+
+        /* 在媒体查询中添加移动端适配 */
+        @media (max-width: 768px) {
+            .carousel-container {
+                margin: 1rem 0;
+                border-radius: 0;
+            }
+            
+            .carousel-slide {
+                height: 300px;
+            }
+            
+            .carousel-btn {
+                width: 30px;
+                height: 30px;
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <nav class="nav">
+            <div class="logo">麦盖提县</div>
+            <button class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
+            <ul class="nav-links">
+                <li><a href="index.html">首页</a></li>
+                <li><a href="culture.html">刀郎文化</a></li>
+                <li><a href="geography.html">地理特色</a></li>
+                <li><a href="tourism.html">旅游资源</a></li>
+                <li><a href="heritage.html">非遗传承</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="geography-content">
+        <section class="geography-section">
+            <h2>地理位置</h2>
+            <p>麦盖提县位于新疆维吾尔自治区西南部，塔里木盆地西缘，喀什地区东部。东接巴楚县，西连莎车县，南邻叶城县，北靠岳普湖县。地理位置优越，是古丝绸之路的重要节点。</p>
+            <div class="carousel-container">
+                <div class="carousel-slide">
+                    <img src="diqiu.png" alt="麦盖提卫星图" class="active">
+                    <img src="2.png" alt="地形特征">
+                    <img src="3.png" alt="河流分布">
+                    <img src="map.png" alt="地貌特征"></img>
+                    <img src="4.png" alt="生态保护区">
+                    
+                </div>
+                <button class="carousel-btn prev">‹</button>
+                <button class="carousel-btn next">›</button>
+                <div class="carousel-dots"></div>
+            </div>
+            
+        </section>
+
+        <section class="geography-section">
+            <h2>地理特征</h2>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <i class="fas fa-mountain"></i>
+                    <h3>地形地貌</h3>
+                    <p>麦盖提县地势平坦，属于塔里木盆地边缘绿洲地带。境内有叶尔羌河、提孜那甫河等河流流经，形成了肥沃的冲积平原。</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-sun"></i>
+                    <h3>气候特点</h3>
+                    <p>属于典型的温带大陆性气候，四季分明，日照充足，昼夜温差大。年平均气温12℃，年降水量约50毫米。</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-tree"></i>
+                    <h3>自然资源</h3>
+                    <p>土地资源丰富，水资源充足，盛产棉花、小麦、玉米等农作物。矿产资源主要有石油、天然气等。</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="geography-section">
+            <h2>生态环境</h2>
+            <p>麦盖提县注重生态环境保护，积极推进生态文明建设。通过实施退耕还林、防沙治沙等工程，有效改善了生态环境。县内建有多个自然保护区，保护着丰富的野生动植物资源。</p>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 新疆交通职业学院-艾比布拉</p>
+    </footer>
+
+       <script>
+        // 轮播图功能
+        const slideWrapper = document.querySelector('.carousel-slide');
+        const images = document.querySelectorAll('.carousel-slide img');
+        const dotsContainer = document.querySelector('.carousel-dots');
+        let currentIndex = 0;
+
+        // 创建指示点
+        images.forEach((_, index) => {
+            const dot = document.createElement('div');
+            dot.className = 'carousel-dot' + (index === 0 ? ' active' : '');
+            dot.style.cssText = 'width:12px;height:12px;background:rgba(255,255,255,0.5);border-radius:50%;cursor:pointer;transition:all 0.3s ease';
+            dot.addEventListener('click', () => goToSlide(index));
+            dotsContainer.appendChild(dot);
+        });
+
+        // 自动轮播
+        let autoPlay = setInterval(nextSlide, 5000);
+
+        function nextSlide() {
+            currentIndex = (currentIndex + 1) % images.length;
+            updateSlider();
+        }
+
+        function prevSlide() {
+            currentIndex = (currentIndex - 1 + images.length) % images.length;
+            updateSlider();
+        }
+
+        function goToSlide(index) {
+            currentIndex = index;
+            updateSlider();
+        }
+
+        function updateSlider() {
+            images.forEach(img => img.classList.remove('active'));
+            images[currentIndex].classList.add('active');
+            
+            document.querySelectorAll('.carousel-dot').forEach((dot, index) => {
+                dot.style.background = index === currentIndex ? 'rgba(255,255,255,0.9)' : 'rgba(255,255,255,0.5)';
+            });
+            
+            clearInterval(autoPlay);
+            autoPlay = setInterval(nextSlide, 5000);
+        }
+
+        // 绑定按钮事件
+        document.querySelector('.next').addEventListener('click', nextSlide);
+        document.querySelector('.prev').addEventListener('click', prevSlide);
+    </script>
+</body>
+</html>
